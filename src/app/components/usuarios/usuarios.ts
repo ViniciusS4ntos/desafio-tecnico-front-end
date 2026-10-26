@@ -15,7 +15,6 @@ export class UsuariosComponent implements OnInit {
   usuarios: UserDTO[] = [];
   errorMessage: string = '';
   
-  // Controlo para mostrar/esconder o formulário de novo utilizador
   mostrarFormularioCriacao: boolean = false;
   novoUtilizador: UserDTO = { nome: '', email: '', senha: '' };
 
@@ -25,7 +24,6 @@ export class UsuariosComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    // Carrega os utilizadores automaticamente assim que o componente é inicializado
     this.carregarUtilizadores();
   }
 
@@ -94,7 +92,6 @@ export class UsuariosComponent implements OnInit {
     if (!this.utilizadorEmEdicao) return;
 
     // Função auxiliar para transformar string vazia em null (se o backend aceitar null)
-    // Ou se preferires não enviar o email caso ele não tenha mudado, podes ajustar aqui.
     const limparVazio = (valor: string | undefined | null) => {
       if (!valor || valor.trim() === '') {
         return null;
@@ -109,7 +106,6 @@ export class UsuariosComponent implements OnInit {
     };
 
     // Se o utilizador preencheu uma nova senha, enviamos. 
-    // Se deixou em branco, não mandamos o campo 'senha' para o backend não a sobrescrever com vazio/null.
     if (this.utilizadorEmEdicao.senha && this.utilizadorEmEdicao.senha.trim() !== '') {
       payload.senha = this.utilizadorEmEdicao.senha;
     }
