@@ -1,0 +1,124 @@
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+h2, h3 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.form-card {
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 6px;
+  border: 1px solid #e1e4e8;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.form-group input:focus, .form-group select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.user-table th, 
+.user-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.user-table th {
+  background-color: #f1f3f5;
+  color: #333;
+  font-weight: 600;
+}
+
+.user-table .no-data {
+  text-align: center;
+  color: #666;
+  padding: 1.5rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+button.btn-save {
+  background-color: #28a745;
+  color: white;
+}
+
+button.btn-save:hover {
+  background-color: #218838;
+}
+
+button.btn-delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+button.btn-delete:hover {
+  background-color: #c82333;
+}
+
+.badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: white;
+}
+
+.badge.COMUM { background-color: #6c757d; }
+.badge.ESTUDANTE { background-color: #17a2b8; }
+.badge.TRABALHADOR { background-color: #ffc107; color: #212529; }

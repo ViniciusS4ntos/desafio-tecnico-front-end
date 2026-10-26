@@ -1,0 +1,117 @@
+<div class="container">
+  <div class="header-actions" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+    <h2 style="margin: 0;">Cartões</h2>
+    <div style="display: flex; gap: 10px;">
+      
+      <!-- Botão para voltar para a tela de Utilizadores -->
+      <a routerLink="/usuarios" class="btn-save" style="background-color: #000000; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; text-decoration: none;">
+        Gerir Usuários
+      </a>
+
+      <!-- Botão de Recarregar -->
+      <button (click)="carregarCartoes()" class="btn-reload" style="background-color: #6c757d; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+        Recarregar
+      </button>
+
+      <!-- Botão Novo Cartão -->
+      <button (click)="toggleFormularioCriacao()" class="btn-save">
+        {{ mostrarFormularioCriacao ? 'Cancelar' : 'Novo Cartão' }}
+      </button>
+
+    </div>
+  </div>
+
+  @if (errorMessage) {
+    <div class="alert-error">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <!-- Formulário para Criar Cartão -->
+  @if (mostrarFormularioCriacao) {
+    <div class="form-card">
+      <h3>Adicionar Novo Cartão</h3>
+      <div class="form-group">
+        <label>Nome do Cartão:</label>
+        <input [(ngModel)]="novoCartao.nome" type="text" placeholder="Ex: Cartão de Transporte" />
+      </div>
+
+      <div class="form-group">
+        <label>Tipo de Cartão:</label>
+        <select [(ngModel)]="novoCartao.tipoCartao">
+          <option value="COMUM">Comum</option>
+          <option value="ESTUDANTE">Estudante</option>
+          <option value="TRABALHADOR">Trabalhador</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>ID do Utilizador:</label>
+        <input [(ngModel)]="userId" type="number" placeholder="ID do utilizador associado" />
+      </div>
+
+      <button (click)="criarCartao()" class="btn-save">Criar Cartão</button>
+    </div>
+  }
+
+  <!-- Formulário de Edição de Cartão -->
+  @if (cartaoEmEdicao) {
+    <div class="form-card">
+      <h3>Editar Cartão (Número: {{ cartaoEmEdicao.numeroCartao }})</h3>
+      <div class="form-group">
+        <label>Nome:</label>
+        <input [(ngModel)]="cartaoEmEdicao.nome" type="text" />
+      </div>
+      <div class="form-group">
+        <label>Tipo de Cartão:</label>
+        <select [(ngModel)]="cartaoEmEdicao.tipoCartao">
+          <option value="COMUM">Comum</option>
+          <option value="ESTUDANTE">Estudante</option>
+          <option value="TRABALHADOR">Trabalhador</option>
+        </select>
+      </div>
+      <button (click)="guardarEdicaoCartao()" class="btn-save">Guardar</button>
+      <button (click)="cancelarEdicaoCartao()" class="btn-cancel" style="margin-left: 10px; background-color: #6c757d; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Cancelar</button>
+    </div>
+  }
+
+  <!-- Tabela de Listagem de Cartões -->
+  <div class="table-container">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Tipo</th>
+          <th>Status</th>
+          <th>Número do Cartão</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (card of cartoes; track card.numeroCartao) {
+          <tr>
+            <td>{{ card.nome }}</td>
+            <td>
+              <span class="badge" [ngClass]="card.tipoCartao">
+                {{ card.tipoCartao }}
+              </span>
+            </td>
+            <td>{{ card.status !== undefined ? card.status : 'N/A' }}</td>
+            <td>{{ card.numeroCartao || 'N/A' }}</td>
+            <td>
+              <button (click)="selecionarParaEdicao(card)" class="btn-edit" style="margin-right: 5px;">Editar</button>
+              <button (click)="alternarStatus(card.numeroCartao!)" class="btn-reload" style="margin-right: 5px; background-color: #17a2b8; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
+                {{ card.status ? 'Desativar' : 'Ativar' }}
+              </button>
+              <button (click)="deletarCartao(card.numeroCartao!)" class="btn-delete">Excluir</button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="5" class="no-data">Nenhum cartão encontrado.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

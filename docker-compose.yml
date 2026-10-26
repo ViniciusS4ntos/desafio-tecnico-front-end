@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  crud-frontend:
+    build: .
+    container_name: crud-frontend
+    ports:
+      - "80:80"
+    networks:
+      - crud-network
+
+networks:
+  crud-network:
+    external: true
+    name: crud-desafio_crud-network 
