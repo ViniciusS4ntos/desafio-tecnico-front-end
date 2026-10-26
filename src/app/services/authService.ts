@@ -20,8 +20,8 @@ export interface AuthenticationDTO {
   providedIn: 'root'
 })
 export class AuthService {
+  // caso for tudo localhost
   private readonly apiUrl = 'http://localhost:8080/auth';
-
   constructor(private http: HttpClient) {}
 
   register(data: RegisterDTO): Observable<any> {

@@ -35,7 +35,7 @@ export class LoginComponent {
         next: (token) => {
           console.log('Login efetuado com sucesso!');
           this.isLoading = false;
-          this.router.navigate(['/dashboard']); 
+          this.router.navigate(['/usuarios']); 
         },
         error: (err) => {
           console.error('Erro ao fazer login:', err);

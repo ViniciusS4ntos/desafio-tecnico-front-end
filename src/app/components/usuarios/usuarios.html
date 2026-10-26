@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="header-actions" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+    <h2 style="margin: 0;">Gestão de Utilizadores</h2>
+    <div style="display: flex; gap: 10px;">
+      
+      <!-- Botão para ir para Cartões -->
+      <a routerLink="/cartoes" class="btn-save" style="text-decoration: none; display: inline-flex; align-items: center;">
+        💳 Gerir Cartões
+      </a>
+
+      <!-- Botão de Recarregar -->
+      <button (click)="carregarUtilizadores()" class="btn-reload" style="background-color: #6c757d; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+        🔄 Recarregar
+      </button>
+
+      <!-- Botão Novo Utilizador -->
+      <button (click)="toggleFormularioCriacao()" class="btn-save">
+        {{ mostrarFormularioCriacao ? 'Cancelar' : '+ Novo Utilizador' }}
+      </button>
+    </div>
+  </div>
+
+  @if (errorMessage) {
+    <div class="alert-error">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <!-- Formulário para Criar Novo Utilizador -->
+  @if (mostrarFormularioCriacao) {
+    <div class="form-card">
+      <h3>Adicionar Novo Utilizador</h3>
+      <div class="form-group">
+        <label>Nome:</label>
+        <input [(ngModel)]="novoUtilizador.nome" type="text" placeholder="Nome completo" />
+      </div>
+      <div class="form-group">
+        <label>E-mail:</label>
+        <input [(ngModel)]="novoUtilizador.email" type="email" placeholder="email@exemplo.com" />
+      </div>
+      <div class="form-group">
+        <label>Senha:</label>
+        <input [(ngModel)]="novoUtilizador.senha" type="password" placeholder="Insere a senha" />
+      </div>
+      <button (click)="criarUtilizador()" class="btn-save">Registar Utilizador</button>
+    </div>
+  }
+
+  <!-- Formulário de Edição -->
+  @if (utilizadorEmEdicao) {
+    <div class="form-card">
+      <h3>Editar Utilizador (ID: {{ utilizadorEmEdicao.id }})</h3>
+      <div class="form-group">
+        <label>Nome:</label>
+        <input [(ngModel)]="utilizadorEmEdicao.nome" type="text" />
+      </div>
+      <div class="form-group">
+        <label>E-mail:</label>
+        <input [(ngModel)]="utilizadorEmEdicao.email" type="email" />
+      </div>
+      <div class="form-group">
+        <label>Nova Senha:</label>
+        <input [(ngModel)]="utilizadorEmEdicao.senha" type="password" placeholder="Insere a nova senha (opcional)" />
+      </div>
+      <button (click)="guardarEdicao()" class="btn-save">Guardar</button>
+      <button (click)="cancelarEdicao()" class="btn-cancel">Cancelar</button>
+    </div>
+  }
+
+  <!-- Lista de Utilizadores -->
+  <div class="table-container">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of usuarios; track user.id) {
+          <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.nome }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <button (click)="selecionarParaEdicao(user)" class="btn-edit">Editar</button>
+              <button (click)="deletarUtilizador(user.email!)" class="btn-delete">Excluir</button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="4" class="no-data">Nenhum utilizador encontrado.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
