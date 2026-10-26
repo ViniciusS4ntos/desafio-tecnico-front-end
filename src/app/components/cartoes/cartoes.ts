@@ -80,7 +80,7 @@ export class CartoesComponent implements OnInit {
       return;
     }
 
-    // Função auxiliar para transformar string vazia ou espaços em branco em null
+    // Função  para transformar string vazia ou espaços em branco em null
     const limparVazio = (valor: string | undefined | null) => {
       if (!valor || valor.trim() === '') {
         return null;
