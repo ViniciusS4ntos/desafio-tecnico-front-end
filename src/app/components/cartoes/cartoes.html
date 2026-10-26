@@ -1,21 +1,21 @@
 <div class="container">
   <div class="header-actions" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-    <h2 style="margin: 0;">Gestão de Cartões</h2>
+    <h2 style="margin: 0;">Cartões</h2>
     <div style="display: flex; gap: 10px;">
       
       <!-- Botão para voltar para a tela de Utilizadores -->
-      <a routerLink="/usuarios" class="btn-save" style="text-decoration: none; display: inline-flex; align-items: center;">
-        👥 Gerir Utilizadores
+      <a routerLink="/usuarios" class="btn-save" style="background-color: #000000; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; text-decoration: none;">
+        Gerir Usuários
       </a>
 
       <!-- Botão de Recarregar -->
       <button (click)="carregarCartoes()" class="btn-reload" style="background-color: #6c757d; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
-        🔄 Recarregar
+        Recarregar
       </button>
 
       <!-- Botão Novo Cartão -->
       <button (click)="toggleFormularioCriacao()" class="btn-save">
-        {{ mostrarFormularioCriacao ? 'Cancelar' : '+ Novo Cartão' }}
+        {{ mostrarFormularioCriacao ? 'Cancelar' : 'Novo Cartão' }}
       </button>
 
     </div>
